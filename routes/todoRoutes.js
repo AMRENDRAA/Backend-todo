@@ -13,4 +13,10 @@ router.post('/create',todoController.createtodo);
 
 router.get('/Faq',todoController.faq);
 
+
+router.delete('/:id',todoController.deleteTodo);
+router.put('/:id',todoController.updateTodo);
+
 module.exports=router;
+
+

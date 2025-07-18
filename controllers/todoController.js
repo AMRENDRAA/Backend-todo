@@ -30,6 +30,11 @@ exports.gettodos= async(req,res)=>{
 
     try{
 
+
+
+
+
+
         const[rows]= await db.query('SELECT * FROM todos');
         res.status(200).json(rows);
 
@@ -37,16 +42,6 @@ exports.gettodos= async(req,res)=>{
         res.status(500).json({error:err.message});
     }
 };
-
-
-// exports.updateTodo= async(req,res)=>{
-
-//     const [id]=req.params;
-//     try{
-//         (await db).query('UPDATE todos ')
-
-//     }
-// }
 
 exports.faq= ((req,res)=>{
 
@@ -82,3 +77,46 @@ exports.faq= ((req,res)=>{
         })
     }
 })
+
+
+
+
+
+exports.updateTodo= async (req,res)=>{
+
+    const {id}= req.params;
+    const {task,completed }= req.body;
+    try{
+
+
+        if (task === undefined || completed === undefined) {
+  return res.status(400).json({ message: "Both 'task' and 'completed' are required" });
+}
+
+        const [result]= await db.execute('UPDATE todos SET task =?,completed=? Where id=?',[task,completed,id]);
+        res.status(201).json({
+            updated:result.affectedRows
+        })
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            error:err.message
+        })
+    }
+}
+
+
+exports.deleteTodo= async(req,res)=>{
+const {id}=req.params;
+try{
+    const[result]= await db.execute('DELETE FROM todos Where id =?',[id]);
+    res.status(200).json({
+        deleted:result.affectedRows
+    })
+}catch(err){
+    res.status(500).json({
+        err:err.message
+    })
+}
+
+}

@@ -1,5 +1,10 @@
 const mysql= require('mysql2/promise');
 require('dotenv').config();
+
+
+
+
+
 const db= mysql.createPool({
 
 
@@ -12,6 +17,8 @@ const db= mysql.createPool({
   queueLimit: 0
 });
 
+
+
 // db.connect((err)=>{
 //     if(err) throw err;
 //     console.log('My sql is connected ');
@@ -19,3 +26,5 @@ const db= mysql.createPool({
 // });
 
 module.exports=db;
+
+
