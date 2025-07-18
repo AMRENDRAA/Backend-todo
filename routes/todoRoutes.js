@@ -10,4 +10,7 @@ const todoController= require('../controllers/todoController');
 
 router.get('/',todoController.gettodos);
 router.post('/create',todoController.createtodo);
+
+router.get('/Faq',todoController.faq);
+
 module.exports=router;

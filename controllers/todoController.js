@@ -47,3 +47,38 @@ exports.gettodos= async(req,res)=>{
 
 //     }
 // }
+
+exports.faq= ((req,res)=>{
+
+    try{
+        const question=[];
+        const answer =[];
+
+
+        res.status(200).json({
+            "success":true,
+            "data":[
+                   {
+            "id": 10,
+            "question": "What is EstuAds?",
+            "answer": "<p>EstuAds is our advertising platform that allows businesses and brands to create and promote events or deals targeting college students in the U.S. Businesses can also sponsor these promotions to get priority placement within our app.</p>",
+            "type": "business",
+            "priority": 10,
+            "createdAt": "2025-05-03T11:05:18.000Z"
+        },
+        {
+            "id":11,
+
+            "question":"How to create a event ",
+            "answer":"Created a new event"
+
+        }
+            ]
+           
+        })
+    }catch(err){
+        res.status(500).json({
+            err:err
+        })
+    }
+})
